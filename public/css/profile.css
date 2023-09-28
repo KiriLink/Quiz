@@ -1,0 +1,136 @@
+.title_bar {
+    color: #448AFF;
+}
+
+@media only screen and (max-width: 800px) {
+    .title_bar {
+        display: none !important;
+    }
+
+    .container {
+        margin-top: 7%;
+    }
+
+    .title_rank {
+        font-size: 1.0rem;
+    }
+}
+
+.center-vertical {
+    display: flex;
+    align-items: center;
+    /* Centra verticalmente el contenido */
+}
+
+.rank_num {
+    margin: 0;
+    color: #0097B2;
+    font-weight: bold;
+    font-size: 5.0rem;
+}
+
+.title_rank {
+    color: #004AAD;
+    font-weight: 700;
+    font-size: 1.7rem;
+}
+
+/*Grafico barras*/
+.bar {
+    background: rgba(128, 128, 128, 0.3);
+    width: 0;
+    margin: .25em 0;
+    color: #fff;
+    position: relative;
+    transition: width 2s, background .2s;
+    clear: both;
+
+    &:nth-of-type(2n) {
+        background: rgba(128, 128, 128, 0.5);
+
+        .label {
+            background-color: #fff;
+        }
+    }
+
+    .label {
+        text-align: right;
+        display: inline-block;
+        position: relative;
+        background: #fff;
+        min-width: 100px;
+        max-width: 150px;
+        padding: 1rem;
+        font-size: 0.8rem;
+        color: rgb(158, 158, 158);
+        z-index: 2;
+    }
+}
+
+.count {
+    position: absolute;
+    right: .25em;
+    top: .75em;
+    padding: 0.05em 0.5em;
+    font-size: 1em;
+}
+
+/* grafico circular */
+#piegraph2 {
+    background-color: #00BF63;
+    margin: 5px;
+    clip: rect(0px, 250px, 125px, 125px);
+}
+
+.innercircle {
+    background-color: #fff;
+    width: 200px;
+    height: 190px;
+    position: relative;
+    top: 27px;
+    left: 25px;
+
+}
+
+.clip {
+    background-color: #fff;
+    position: relative;
+    top: -115px;
+    left: 125px;
+    border-radius: 0;
+    width: 125px;
+    height: 250px;
+}
+
+.graph {
+    position: relative;
+    margin: 5px;
+    width: 100px;
+    height: 100px;
+}
+
+canvas {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+h2 {
+    color: #00BF63;
+    display: block;
+    line-height: 150px;
+    text-align: center;
+    width: 220px;
+    font-family: sans-serif;
+    font-size: 50px;
+    font-weight: 900;
+    font-family: 'Roboto', sans-serif;
+}
+
+input {
+    width: 200px;
+
+}
+
+h2 {}
