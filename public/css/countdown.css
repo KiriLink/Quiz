@@ -1,0 +1,21 @@
+.item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+.item h2 {
+	width: 160px;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+svg {
+	transform: rotate(-90deg);
+}
+.circle_animation {
+	stroke-dasharray: 440; /* this value is the pixel circumference of the circle */
+	stroke-dashoffset: 0;
+	transition: all 1s linear;
+}

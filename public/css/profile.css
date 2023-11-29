@@ -1,20 +1,77 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
 .title_bar {
-    color: #448AFF;
+    color: #4C6B64;
+}
+
+.img_usuario {
+    max-width: 10rem;
+    max-height: 10rem;
+}
+
+.eliminar{
+    margin-top: 0.5rem;
+}
+
+@media only screen and (max-width: 1430px) {
+    .graph {
+        margin-left: 20% !important;
+        margin-bottom: 40% !important;
+    }
+}
+
+@media only screen and (max-width: 1135px) {
+    .graph {
+        margin-left: 13% !important;
+        margin-bottom: 48% !important;
+    }
+}
+
+
+@media only screen and (max-width: 990px) {
+    .button_slot {
+        margin-top: 5%;
+    }
+
+    .eliminar{
+        margin-top: 0 !important;
+    
+    }
 }
 
 @media only screen and (max-width: 800px) {
-    .title_bar {
-        display: none !important;
+    .img_usuario {
+        max-width: 70px;
+        max-height: 70px;
     }
 
-    .container {
-        margin-top: 7%;
+    .title_bar {
+        display: none !important;
     }
 
     .title_rank {
         font-size: 1.0rem;
     }
+
+    .graph {
+        margin-left: 8% !important;
+        margin-bottom: 57% !important;
+    }
 }
+
+@media only screen and (max-width: 600px) {
+    .graph {
+        margin-left: 16% !important;
+        margin-bottom: 40% !important;
+    }
+
+    .form_cancel {
+        margin-top: 3%;
+    }
+}
+
 
 .center-vertical {
     display: flex;
@@ -22,21 +79,31 @@
     /* Centra verticalmente el contenido */
 }
 
+.carta {
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: white;
+    padding: 1%;
+    margin-top: 3%;
+}
+
 .rank_num {
     margin: 0;
-    color: #0097B2;
+    color: #4C6B64;
     font-weight: bold;
     font-size: 5.0rem;
 }
 
 .title_rank {
-    color: #004AAD;
+    color: #004F45;
     font-weight: 700;
     font-size: 1.7rem;
 }
 
 /*Grafico barras*/
 .bar {
+
     background: rgba(128, 128, 128, 0.3);
     width: 0;
     margin: .25em 0;
@@ -78,7 +145,7 @@
 /* grafico circular */
 #piegraph2 {
     background-color: #00BF63;
-    margin: 5px;
+    margin: 5px 0 5px 5px 5px;
     clip: rect(0px, 250px, 125px, 125px);
 }
 
@@ -104,7 +171,8 @@
 
 .graph {
     position: relative;
-    margin: 5px;
+    margin-left: 30%;
+    margin-bottom: 30%;
     width: 100px;
     height: 100px;
 }
@@ -133,4 +201,22 @@ input {
 
 }
 
-h2 {}
+p {
+    text-align: center;
+    margin: 4% 0 4% 0;
+}
+
+h3 {
+    text-align: center;
+    margin: 2% 0 2% 0;
+}
+
+.card_text {
+    color: #004F45;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.text_slot {
+    margin-top: 1%;
+}

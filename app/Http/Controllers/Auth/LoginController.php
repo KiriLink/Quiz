@@ -25,29 +25,61 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
 
+    protected function credentials(Request $request)
+    {
+        return [
+            'email' => $request->email,
+            'password' => $request->password,
+            'estado' => 1,
+            'email_verified_at'=> 1
+        ];
+    }
+
+    protected function attemptLogin(Request $request)
+{
+    // Verifica el estado antes de intentar autenticar
+    $credentials = $this->credentials($request);
+
+    $user = \App\Models\User::where('email', $request->email)->first();
+
+    // Verifica si el usuario está verificado
+    if ($user && $user->email_verified_at == null) {
+        throw ValidationException::withMessages([
+            $this->username() => ['Tu cuenta aún no ha sido verificada.']
+        ]);
+    }
+
+    if (Auth::attempt($credentials, $request->filled('remember'))) {
+        return $this->sendLoginResponse($request);
+    }
+
+    // Si la autenticación falla, incrementa el contador de intentos
+    $this->incrementLoginAttempts($request);
+
+    // Lanza una excepción de autenticación fallida
+    throw ValidationException::withMessages([
+        $this->username() => [trans('auth.failed')],
+    ]);
+}
+
     public function logout(Request $request, Redirector $redirect)
     {
+        // Extrae el mensaje de la sesión
+        $verificationMessage = session('verification-message');
+    
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        
-        return $redirect->route('login');
+    
+        // Redirige al usuario a la página de login con el mensaje
+        return $redirect->route('login')->with('verification-message', $verificationMessage);
     }
+    
 }

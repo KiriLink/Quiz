@@ -37,5 +37,5 @@ var drawCircle = function(color, lineWidth, percent) {
 		ctx.stroke();
 };
 
-drawCircle('#efefef', options.lineWidth, 100 / 100);
+drawCircle('#FF5757', options.lineWidth, 100 / 100);
 drawCircle('#00BF63', options.lineWidth, options.percent / 100);

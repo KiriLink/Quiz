@@ -1,11 +1,18 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+::-webkit-scrollbar {
+    display: none;
+  }
+
+  .guino_anim{
+    max-width: 15rem;
+    max-height: 15rem;
+  }
 
 body {
-  background: #EEF5F9;
+  background: #F0EEF9;
   font-family: 'Open Sans', sans-serif;
 }
 h1 {
-  color: #00362F;
+  color: #5271FF;
     font-weight: bold;
 }
 .faded {
@@ -104,15 +111,15 @@ h1 {
 .quiz-button,
 #quiz-buttons a {
     color: #fdfdfd!important;
-    background: #4A7729;
-    border: .1em solid #4A7729;
+    background: #004AAD;
+    border: .1em solid #004AAD;
     transition: 0.2s ease;
 }
 
 .quiz-button:hover,
 #quiz-buttons a:hover {
-    background: #009C86;
-    border: .1em solid #009C86;
+    background: #4373D0;
+    border: .1em solid #004AAD;
     transition: 0.2s ease;
 }
 

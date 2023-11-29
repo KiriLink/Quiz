@@ -20,10 +20,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('ruta_foto')->default("");
+            $table->string('ruta_foto')->default("assets/profile.png");
             $table->date('anio_actual')->nullable();
             $table->integer('horario')->default(0);
             $table->integer('estado')->default(0);
+            $table->integer('tipo_usu')->default(0);
             $table->rememberToken();
             $table->timestamps();
 

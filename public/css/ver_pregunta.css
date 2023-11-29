@@ -1,0 +1,56 @@
+::-webkit-scrollbar {
+    display: none;
+  }
+
+@media only screen and (max-width: 1440px) {
+    .editar_pregunta {
+        margin-top: 2%;
+    }
+}
+
+@media only screen and (max-width: 990px) {
+    .up_section{
+        text-align: center;
+    }
+    .editar_pregunta{
+        margin-top: 0%;
+    }
+
+    .form_cancel{
+        margin-top: 3%;
+    }
+
+    .spacer{
+        margin-top: 9%;
+    }
+  }
+
+  @media only screen and (max-width: 380px) {
+    .editar_pregunta{
+        margin-top: 2%;
+    }
+
+    .spacer{
+        margin-top: 12%;
+    }
+  }
+
+.up_section {
+    margin-top: 2%;
+}
+
+.dif_normal {
+    color: #7ED957;
+}
+
+.dif_dificil {
+    color: #FF5757;
+}
+
+.text_title {
+    font-weight: 600;
+}
+
+.spacer{
+    margin-top: 9%;
+}

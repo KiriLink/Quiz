@@ -1,37 +1,22 @@
-body {
-    background-color: #EEF5F9;
-    ;
-}
+::-webkit-scrollbar {
+    display: none;
+  }
 
-#row_container {
+#row_container{
     margin-top: 10%;
 }
 
 @media only screen and (max-width: 800px) {
-    #row_container {
-        margin-top: 0;
+    #row_container{
+        margin-top: 1%;
     }
 }
 
-.boton {
-    margin-bottom: 5%;
+.rank{
+    margin-top: 7%;
 }
 
-.boton_quiz {
-    width: 60%;
-}
-
-@media only screen and (max-width: 800px) {
-    .boton_quiz {
-        width: 100%;
-    }
-}
-
-.rank {
-    margin-top: 30%;
-}
-
-.card {
+.card{
     height: 35rem;
     border-radius: 20px;
 }
@@ -41,26 +26,40 @@ body {
     background-image: linear-gradient(90deg, #0097b2 0%, #7ed957 100%);
 }
 
-.card_1_sub_title {
+.card_1_sub_title{
     color: #00BF63;
     font-weight: bold;
     font-size: 1.5rem;
 }
 
-.card_1_title {
+.card_1_title{
     color: #004F45;
     font-weight: bold;
     font-size: 3.5rem;
 }
 
-.card_1_text {
+.card_1_text{
     color: #4C6B64;
     font-weight: 700;
     font-size: 1.2rem;
 }
 
-.card_1_buttons {
+.card_1_buttons{
     margin-top: 40%;
+}
+
+@media only screen and (max-width: 990px) {
+    .card_1_buttons{
+        margin-top: 20%;
+    }
+
+    .button{
+        margin-bottom: 2%;
+    }
+    
+    .spacer{
+        margin-top: 10%;
+    }
 }
 
 #card_2 {
@@ -68,31 +67,31 @@ body {
     background-image: linear-gradient(90deg, #5de0e6 0%, #004aad 100%);
 }
 
-.card_2_sub_title {
+.card_2_sub_title{
     color: #5271FF;
     font-weight: bold;
     font-size: 1.5rem;
 }
 
-.card_2_title {
+.card_2_title{
     color: #004AAD;
     font-weight: bold;
     font-size: 3.5rem;
 }
 
-.card_2_text {
+.card_2_text{
     color: #E7F3F5;
     font-weight: 700;
     font-size: 1.2rem;
 }
 
-.card_2_rank_text {
+.card_2_rank_text{
     color: #004AAD;
     font-weight: 700;
     font-size: 1.7rem;
 }
 
-.rank_num {
+.rank_num{
     color: #0097B2;
     font-weight: bold;
     font-size: 5.0rem;
@@ -100,6 +99,6 @@ body {
 
 .center-vertical {
     display: flex;
-    align-items: center;
-    /* Centra verticalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
 }
+

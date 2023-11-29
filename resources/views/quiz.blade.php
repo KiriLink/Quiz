@@ -5,28 +5,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/logotipo-santo-tomas-horizontal.svg')}}">
-    <title>Quiz | Quiz</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/logotipo-santo-tomas-horizontal.svg') }}" />
+    <title>QUIZ ST CFT | Quiz</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('materialize/css/materialize.css')}}">
     <link rel="stylesheet" href="{{ asset('css/quiz.css')}}">
     <link rel="stylesheet" href="{{ asset('css/navbar.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/countdown.css')}}">
+
 </head>
 
 <body>
-<div class="navbar">
-        <nav>
-            <div class="nav-wrapper" style="background-color:#4C6B64;">
-                <img src="{{ asset('assets/profile.png')}}" alt="" class="circle responsive-img logo">
-                <span class="brand-logo hide-on-med-and-down">{{ auth()->user()->name .' '. auth()->user()->apellido_paterno ." ". auth()->user()->apellido_materno}}</span>
-                <span class="sub-brand-logo hide-on-med-and-down" style="color: #004F45;">{{ auth()->user()->email }}</span>
+    <audio id="miAudio" controls hidden>
+        <source src="{{ asset('media/music.mp3') }}" type="audio/mp3">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <div class="navbar">
+        <nav style="box-shadow: none !important;">
+            <div class="nav-wrapper">
+                <img src="{{ asset(auth()->user()->ruta_foto) }}" alt="" class="circle responsive-img logo">
+                <span class="brand-logo hide-on-med-and-down" style="color: #121212;">{{ auth()->user()->name .' '. auth()->user()->apellido_paterno ." ". auth()->user()->apellido_materno}}</span>
+                <span class="sub-brand-logo hide-on-med-and-down" style=" color: #004F45;">{{ auth()->user()->email }}</span>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="" style="font-weight: bolder; font-size: 1.2rem;"><i class="material-icons left red-text">favorite</i>5</a></li>
-                    <li><a href="" style="font-weight: bold; font-size: 1.1rem;"><i class="material-icons left teal-text text-lighten-2">stars</i>Platino</a></li>
-                    <li><a href="" class="waves-effect waves-light btn yellow darken-2"><i class="material-icons">edit</i></a></li>
-                    <li><a href="/logout" class="waves-effect waves-light btn red accent-2"><i class="material-icons">exit_to_app</i></a></li>
+                    @if (auth()->user()->tipo_usu == 0)
+                    <li><a href="#" class="modal-trigger" style="font-weight: bold; font-size: 1.1rem; color: #4C6B64;"><i class="material-icons left blue-grey-text text-lighten-3">assistant</i>Estudiante</a></li>
+                    @else
+                    <li><a href="#" class="modal-trigger" style="font-weight: bold; font-size: 1.1rem; color: #4C6B64;"><i class="material-icons left teal-text text-lighten-2">stars</i>Administrador</a></li>
+                    @endif
+                    <li><a href="/logout" class="waves-effect waves-light btn red accent-2" style="border-radius: 50px;"><i class="material-icons">exit_to_app</i></a></li>
                 </ul>
             </div>
         </nav>
@@ -34,49 +43,105 @@
     <ul class="sidenav" id="mobile-demo">
         <li><a href=""><i class="material-icons left">person</i>{{ auth()->user()->name .' '. auth()->user()->apellido_paterno ." ". auth()->user()->apellido_materno}}</a></li>
         <li><a href=""><i class="material-icons left">email</i>{{ auth()->user()->email }}</a></li>
-        <li><a href="" style="font-weight: bolder; font-size: 1.2rem;"><i
-                    class="material-icons left red-text">favorite</i>5</a></li>
-        <li><a href="" style="font-weight: bold; font-size: 1.1rem;"><i
-                    class="material-icons left teal-text text-lighten-2">stars</i>Platino</a></li>
-        <li><a href=""><i class="material-icons left yellow-text text-darken-2">edit</i>Editar Perfil</a></li>
-        <li><a href=""><i class="material-icons left red-text text-accent-2">exit_to_app</i>Cerrar Sesion</a></li>
+        @if (auth()->user()->tipo_usu == 0)
+        <li><a href="#suscripcion" class="modal-trigger" style="font-weight: bold; font-size: 1.1rem;"><i class="material-icons left blue-grey-text text-lighten-3">assistant</i>Estudiante</a></li>
+        @else
+        <li><a href="#suscripcion" class="modal-trigger" style="font-weight: bold; font-size: 1.1rem;"><i class="material-icons left teal-text text-lighten-2">stars</i>Administrador</a></li>
+        @endif
+        <li><a href="/logout"><i class="material-icons left red-text text-accent-2">exit_to_app</i>Cerrar Sesion</a></li>
     </ul>
+
     <main>
         <div class="container">
             <div id="quiz">
                 <div id="quiz-header">
-                    <h1>Quiz Variado</h1>
+                    <div id="quiz-header">
+                        <img src="{{ asset('assets/topic2.png') }}" alt="" class="responsive-img guino_anim">
+                        <div id="counter" style="display: none;">
+                            <div class="item">
+                                <h2 id="time">time</h2>
+                                <svg width="160" height="160" xmlns="http://www.w3.org/2000/svg">
+                                    <circle id="circle" class="circle_animation" r="69.85699" cy="81" cx="81" stroke-width="8" stroke="#6fdb6f" fill="none" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div id="quiz-start-screen">
-                    <p><a href="#" id="quiz-start-btn" class="quiz-button">Comenzar</a></p>
+                    <p><a href="#" id="quiz-start-btn" onclick="playAudio()" class="quiz-button">Comenzar</a></p>
                 </div>
             </div>
         </div>
     </main>
+
+    <div style="margin-top: 13%;"></div>
     <div class="footer-fixed">
         <footer class="">
             <nav class="z-depth-0">
-                <div class="nav-wrapper" style="background-color:#4C6B64;">
+                <div class="nav-wrapper green darken-4">
                     <ul class="justify">
-                        <li><a href="#!"><i class="material-icons">person</i></a></li>
-                        <li><a href="{{ route('preguntas.normales') }}" style="background-color: #C4DBD6; border-radius: 10px;"><i
-                                    class="material-icons" style="color: #4C6B64;">lightbulb</i></a></li>
-                        <li><a href="#!"><i class="material-icons">grade</i></a></li>
-                        <li><a href="{{route('login')}}"><i class="material-icons">home</i></a></li>
+                        <li><a href="{{ route('profile') }}"><i class="material-icons">person</i></a></li>
+                        @if(auth()->user()->tipo_usu == 1)
+                        <li><a href="{{ route('gestionar_usuarios') }}"><i class="material-icons">group</i></a></li>
+                        @endif
+                        @if(auth()->user()->tipo_usu == 0)
+                        <li><a href="{{ route('preguntas_normales',1) }}" style="background-color: #C4DBD6; border-radius: 10px;"><i class="material-icons green-text text-darken-4">lightbulb</i></a></li>
+                        @endif
+                        <li><a href="{{ route('desafio') }}"><i class="material-icons">grade</i></a></li>
+                        <li><a href="{{route('home')}}"><i class="material-icons">home</i></a></li>
+                        <li><a href="{{route ('gestionar_pregunta')}}"><i class="material-icons">format_list_bulleted</i></a></li>
                     </ul>
                 </div>
             </nav>
         </footer>
     </div>
 
+    <!--Estructura de modals-->
+
+    <div id="eliminar_modal" class="modal">
+        <div class="modal-content">
+            <h4 class="red-text">¿Estás seguro de que quieres eliminar esta pregunta?</h4>
+            <p>Esta acción no se puede deshacer.</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+            <a href="#!" class="waves-effect waves-red btn-flat" id="confirmarEliminar">Aceptar</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{{ asset('materialize/js/materialize.js')}}"></script>
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src="{{ asset('js/jquery.quiz-min.js')}}"></script>
     <script src='//cdnjs.cloudflare.com/ajax/libs/mousetrap/1.6.1/mousetrap.min.js'></script>
+    <script>
+    function playAudio() {
+        var audio = document.getElementById('miAudio');
+        audio.play();
+
+        // Oculta la imagen y muestra el contador
+        document.getElementById('quiz-header').innerHTML = '<div id="counter">' +
+            '<div class="item">' +
+            '<h2 id="time">time</h2>' +
+            '<svg width="160" height="160" xmlns="http://www.w3.org/2000/svg">' +
+            '<circle id="circle" class="circle_animation" r="69.85699" cy="81" cx="81" stroke-width="8" stroke="#6fdb6f" fill="none" />' +
+            '</svg>' +
+            '</div>' +
+            '</div>';
+
+        // Inicia el temporizador después de cambiar el contenido
+        startTimer();
+    }
+</script>
 
     <script src="{{ asset('js/navbar.js')}}"></script>
-    <script src="{{ asset('js/downbar.js')}}"></script>
+    @if ($p == 1)
     <script src="{{ asset('js/quiz.js')}}"></script>
+    @elseif ($p == 2)
+    <script src="{{ asset('js/quiz2.js')}}"></script>
+    @endif
+    <script src="{{ asset('js/modal.js') }}"></script>
 </body>
 
 </html>

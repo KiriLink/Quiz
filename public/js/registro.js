@@ -1,56 +1,57 @@
-const email = document.getElementById("logemail");
-const password = document.getElementById("logpass");
-const login = document.querySelector(".btn");
-const ptxt = document.getElementById("pword-txt");
-const etxt = document.getElementById("email-txt");
-const Eerror = document.getElementById("email-error");
-const perror = document.getElementById("password-error");
-const input = document.querySelector(".form-style");
-const container = document.querySelector(".container");
-const esearch = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-const psearch = /[a-z]{8,32}/g;
-
-login.addEventListener('click', (e) => {
-  if(!password.value.match(psearch)){
-   password.focus();
-   e.preventDefault();
-    password.style.borderColor = "#ec4846";
-    ptxt.style.color = "#ec4846";
-    perror.innerText = " - La constraseña de tener entre 8 a 32 caracteres";
-  }
-  else if(email.value === "" || !email.value.match(esearch)){
-    email.focus();
-    e.preventDefault();
-    email.style.borderColor = "#ec4846";
-    etxt.style.color = "#ec4846";
-    Eerror.innerText = " - El correo institucional no es válido";
-  }else{
-    email.value = "";
-    password.value = "";
-    container.style.animation = "jump .3s linear";
-    container.addEventListener('animationend', () => {
-      container.style.display = "none";
-      canvas.style.transform = "translate(0vw)";
-     // setTimeout(() => {
-        user.login = true;
-      //}, 1000)
-    })
-  }
-  setTimeout(() => {
-    ptxt.style.color = "#919296";
-    etxt.style.color = "#919296";
-    perror.innerText = "";
-    Eerror.innerText = "";
-    email.style.borderColor = "";
-    password.style.borderColor = "";
-  }, 2500)
-});
-
-let user= {
-  login: false
+function handleBlur(rut) {
+    // Verificar si el campo tiene contenido antes de llamar a formatRut
+    if (rut.value.trim() !== '') {
+        formatRut(rut);
+    }
 }
 
-window.addEventListener('resize', function(){
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-})
+function formatRut(rut) {
+    var valor = rut.value.replace(/\./g, '').replace(/\-/g, '');
+
+    // Eliminar caracteres no permitidos
+    valor = valor.replace(/[^0-9kK]/g, '');
+
+    if (valor.length > 9) {
+        valor = valor.substring(0, 9);
+    }
+
+    while (valor.length < 9) {
+        valor = '0' + valor;
+    }
+
+    cuerpo = valor.slice(0, -1);
+    dv = valor.slice(-1).toUpperCase();
+
+    var cuerpoFormateado = cuerpo.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    rut.value = cuerpoFormateado + '-' + dv;
+
+    // Verificar que la letra final sea "K"
+    if (valor.length < 7 || valor.length > 9 || (dv !== 'K' && !/^[0-9]$/.test(dv))) {
+        rut.setCustomValidity("RUT Incompleto o Demasiado Largo o Letra Final Incorrecta");
+    } else {
+        rut.setCustomValidity('');
+    }
+}
+
+document.getElementById('reg_email').addEventListener('blur', function() {
+    var emailInput = this.value;
+    var allowedDomains = [,'santotomas.cl', 'alumnos.santotomas.cl'];
+    var validDomain = false;
+
+    for (var i = 0; i < allowedDomains.length; i++) {
+        if (emailInput.endsWith('@' + allowedDomains[i])) {
+            validDomain = true;
+            break;
+        }
+    }
+
+    if (validDomain) {
+        document.getElementById('email-error').textContent = '';
+        this.setCustomValidity('');
+    } else {
+        document.getElementById('email-error').textContent = ' Solo se puede registrarse con su correo de Santo Tomas';
+        this.setCustomValidity('Solo se puede registrarse con su correo de Santo Tomas');
+    }
+});
+
+

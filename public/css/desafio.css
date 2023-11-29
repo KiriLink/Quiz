@@ -1,0 +1,85 @@
+::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media only screen and (max-width: 1119px) {
+    .recargar{
+        margin-top: 0.5rem !important;
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .spacer{
+        margin-top: 10% !important;
+    }
+  }
+
+  @media only screen and (max-width: 992px) {
+    .buttons{
+        text-align: center !important;
+    }
+
+    .recargar {
+        margin-top: 0 !important;
+    }
+
+    .title {    
+        text-align: center !important;
+    }
+  }
+
+  @media only screen and (max-width: 280px) {
+    .card .card-content{
+        padding: 0px !important;
+        margin: 0px !important;
+    }
+
+    .scrollable{
+        width: 90% !important;
+    }
+  }
+  
+  @media only screen and (max-width: 550px) {
+    .card .card-content{
+        padding: 10px !important;
+        margin: 0px !important;
+    }
+  }
+
+main{
+    margin-top: 6rem;
+}
+
+
+.scrollable {
+    width: 100%;
+    height: 50vh;
+    overflow: auto;
+}
+
+.buttons{
+    text-align: right;
+}
+
+.card {
+    width: 100%;
+    height: auto;
+}
+
+.card .card-content{
+    padding: 60px;
+    margin: 10px;
+}
+
+.divider{
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.title{
+    font-weight: bolder !important;
+}
+
+.spacer{
+    margin-top: 5%;
+}

@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'rut', // Asegúrate de incluir 'rut' si está en tu tabla
+        'rut',
         'nombre', // Asegúrate de incluir 'nombre' si está en tu tabla
         'apellido_paterno', // Asegúrate de incluir 'apellido_paterno' si está en tu tabla
         'apellido_materno', // Asegúrate de incluir 'apellido_materno' si está en tu tabla
@@ -29,7 +29,8 @@ class User extends Authenticatable
         'anio_actual', // Asegúrate de incluir 'anio_actual' si está en tu tabla
         'horario', // Asegúrate de incluir 'horario' si está en tu tabla
         'estado', // Asegúrate de incluir 'estado' si está en tu tabla
-    
+        'email_verified_at',
+        'tipo_usu'
     ];
 
     /**
@@ -48,7 +49,6 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
 }

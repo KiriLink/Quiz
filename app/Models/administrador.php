@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class administrador extends Model
+class Administrador extends Model
 {
     use HasFactory;
 }

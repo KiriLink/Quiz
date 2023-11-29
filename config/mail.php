@@ -36,7 +36,6 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'url' => env('MAIL_URL'),
             'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
@@ -44,6 +43,22 @@ return [
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
+        ],
+        'mandrillapp' => [
+            'transport' => 'smtp',
+            'host' => env('MANDRILL_HOST', 'smtp.mailgun.org'),
+            'port' => env('MANDRILL_PORT', 587),
+            'encryption' => env('MANDRILL_ENCRYPTION', 'tls'),
+            'username' => env('MANDRILL_USERNAME'),
+            'password' => env('MANDRILL_PASSWORD'),
+        ],
+        'brevo' => [
+            'transport' => 'smtp',
+            'host' => env('BREVO_HOST', 'smtp-relay.brevo.com'),
+            'port' => env('BREVO_PORT', 587),
+            'encryption' => env('BREVO_ENCRYPTION', 'tls'),
+            'username' => env('c.aros10@alumnos.santotomas.cl'),
+            'password' => env('vOXDZUpS60HqIRTL'),
         ],
 
         'ses' => [
